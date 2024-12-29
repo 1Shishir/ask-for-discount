@@ -1,0 +1,20 @@
+{
+  "ratings": {
+    "stars": {
+      "label": "Ratings"
+    },
+    "home": {
+      "recommendationText": "Recommended Product!"
+    }
+  },
+  "products": {
+    "make_offer": {
+      "button": "Make an Offer",
+      "title": "Make an Offer",
+      "price_label": "Your Price",
+      "email_label": "Your Email",
+      "submit": "Submit Offer",
+      "cancel": "Cancel"
+    }
+  }
+}

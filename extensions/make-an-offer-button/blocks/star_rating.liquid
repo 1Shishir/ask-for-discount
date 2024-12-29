@@ -1,0 +1,161 @@
+<div class="make-offer-container" style="width: 100%;">
+  
+  <button 
+    id="makeOfferBtn" 
+    style="
+      background-color: {{ section.settings.button_color }};
+      color: {{ section.settings.text_color }};
+      padding: {{ section.settings.button_padding }}px;
+      border: none;
+      border-radius: {{ section.settings.corner_radius }}px;
+      cursor: pointer;
+      width: 100%;
+      display: block;
+    ">
+    {{ section.settings.button_text }}
+  </button>
+
+  <div 
+    id="offerDialog" 
+    style="
+      display: none; 
+      position: fixed; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      background: white; 
+      padding: 20px; 
+      box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+      border-radius: 8px; 
+      z-index: 1000; 
+      min-width: 300px;
+    ">
+    <h2 style="text-align: center; margin-bottom: 20px;">Make an Offer</h2>
+    
+    <form id="offerForm">
+      <div style="margin-bottom: 15px;">
+        <label for="offerPrice">Price</label>
+        <input 
+          type="number" 
+          id="offerPrice" 
+          required 
+          style="
+            width: 100%; 
+            padding: 8px; 
+            margin-top: 5px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px;
+          ">
+      </div>
+      
+      <div style="margin-bottom: 15px;">
+        <label for="offerEmail">Email</label>
+        <input 
+          type="email" 
+          id="offerEmail" 
+          required 
+          style="
+            width: 100%; 
+            padding: 8px; 
+            margin-top: 5px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px;
+          ">
+      </div>
+      
+      <div style="text-align: center;">
+        <button 
+          type="submit" 
+          style="
+            background-color: {{ section.settings.button_color }};
+            color: {{ section.settings.text_color }};
+            padding: 10px 20px;
+            border: none; 
+            border-radius: {{ section.settings.corner_radius }}px; 
+            cursor: pointer; 
+            margin-right: 10px;
+          ">
+          Submit Offer
+        </button>
+        <button 
+          type="button" 
+          onclick="closeDialog()" 
+          style="
+            padding: 10px 20px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            cursor: pointer;
+          ">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('makeOfferBtn').addEventListener('click', function() {
+      document.getElementById('offerDialog').style.display = 'block';
+    });
+
+    function closeDialog() {
+      document.getElementById('offerDialog').style.display = 'none';
+    }
+
+    document.getElementById('offerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+     
+      alert('Offer submitted!'); 
+      closeDialog();
+    });
+
+    window.onclick = function(event) {
+      var dialog = document.getElementById('offerDialog');
+      if (event.target === dialog) {
+        closeDialog();
+      }
+    }
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "Make An Offer Button",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Make an Offer"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Background Color",
+      "default": "#ff0000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "button_padding",
+      "label": "Button Padding (in px)",
+      "default": 10,
+      "min": 5,
+      "max": 50
+    },
+    {
+      "type": "number",
+      "id": "corner_radius",
+      "label": "Button Corner Radius (in px)",
+      "default": 4,
+      "min": 0,
+      "max": 50
+    }
+  ]
+}
+{% endschema %}
